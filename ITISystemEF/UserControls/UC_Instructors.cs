@@ -110,28 +110,27 @@ namespace ITISystemEF.UserControls
             instructor.Phone = txtPhone.Text;
             if (selectedDepartment != null)
                 instructor.DepartmentId = Convert.ToInt32(cboDepartment.SelectedValue);
-
-            if (btnSave.Text == "Save" && instructor.InstructorId == 0)
-            {
-                using (MyContext db = new MyContext())
-                {
-                    db.Instructors.Add(instructor);
-                    db.SaveChanges();
-                    loadInstructors();
-                    MessageBox.Show("Instructor Added Successfully");
-                }
-            }
             else
+                instructor.DepartmentId = null;
+            using (MyContext db = new MyContext())
             {
-                using (MyContext db = new MyContext())
+
+                if (btnSave.Text == "Save" && instructor.InstructorId == 0)
+                {
+
+                    db.Instructors.Add(instructor);
+                    MessageBox.Show("Instructor Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
                 {
                     db.Instructors.Update(instructor);
-                    db.SaveChanges();
-                    loadInstructors();
-                    MessageBox.Show("Instructor Updated Successfully");
+                    MessageBox.Show("Instructor Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                db.SaveChanges();
             }
             clear();
+            loadInstructors();
         }
 
         private void btnCancle_Click_1(object sender, EventArgs e)

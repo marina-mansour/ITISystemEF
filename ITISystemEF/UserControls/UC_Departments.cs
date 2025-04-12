@@ -154,14 +154,14 @@ namespace ITISystemEF.UserControls
                     db.Departments.Add(department);
                     db.SaveChanges();
                     //loadDepartments();
-                    MessageBox.Show("Department Added Successfully");
+                    MessageBox.Show("Department Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     db.Departments.Update(department);
                     db.SaveChanges();
                     //loadDepartments();
-                    MessageBox.Show("Department Updated Successfully");
+                    MessageBox.Show("Department Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
 
