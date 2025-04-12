@@ -83,6 +83,12 @@ namespace ITISystemEF.UserControls
             student.FName = txtFirstName.Text.Trim();
             student.LName = txtLastName.Text.Trim();
             student.Phone = txtPhone.Text.Trim();
+
+            if (string.IsNullOrEmpty(student.FName) || string.IsNullOrEmpty(student.LName) || string.IsNullOrEmpty(student.Phone))
+            {
+                MessageBox.Show("Please fill all fields", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             using (MyContext db = new MyContext())
             {
                 //if (student.Id == 0)
